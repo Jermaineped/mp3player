@@ -1,0 +1,54 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
+
+public class PlaylistManager {
+    private List<Playlist> playlists;
+
+    public PlaylistManager(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+    
+    public void savePlaylist(Playlist playlist, String filename) {
+        if (playlists.contains(playlist)) {
+            playlist.saveToM3U(filename);
+        }
+    }
+    
+    public void addPlaylist(Playlist playlist) {
+        playlists.add(playlist);
+    }
+
+//    public void createPlaylist(String name) {
+//        Playlist playlist = new Playlist(name);
+//        playlists.add(playlist);
+//    }
+
+    public void addTrackToPlaylist(Playlist playlist, Track track) {
+        if (playlists.contains(playlist)) {
+            playlist.addTrack(track);
+        }
+    }
+
+    public void removeTrackFromPlaylist(Playlist playlist, Track track) {
+        if (playlists.contains(playlist)) {
+            playlist.removeTrack(track);
+        }
+    }
+
+    public Playlist getPlaylist(String playlistName) {
+        for (Playlist playlist : playlists) {
+            if (playlist.getName().equals(playlistName)) {
+                return playlist;
+            }
+        }
+        return null; // Playlist nicht gefunden
+    }
+//    
+//    public List<Playlist> getAllTracks() {
+//    	 for (Playlist playlist : playlists) {
+//             System.out.println("Tracks: " + playlist.getTracks());
+//         }    			
+//    }
+}

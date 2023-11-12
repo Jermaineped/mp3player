@@ -1,0 +1,100 @@
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.List;
+
+import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
+
+public class PlaylistManager {
+    private List<Playlist> playlists;
+
+    public PlaylistManager(List<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+   
+    /**
+     * Save playlist as M3U 
+     * 
+     * @param playlist
+     * @param filename
+     */
+    public void savePlaylist(Playlist playlist, String filename) {
+        if (playlists.contains(playlist)) {
+            playlist.saveToM3U(filename);
+        }
+    }
+    
+    public void addFileToPlaylist(Playlist playlist, String filePath) {
+        File file = new File(filePath);
+
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles(new FilenameFilter() {
+                public boolean accept(File file) {
+                    // Filter für die gewünschte Datei (z. B. nach Dateinamen)
+                    return file.isFile() && file.getName().equals(fileName);
+                }
+
+				@Override
+				public boolean accept(File dir, String name) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+            });
+
+            if (files != null && files.length > 0) {
+                // Die gewünschte Datei wurde gefunden, erstelle einen Track und füge ihn zur Playlist hinzu
+                Track track = new Track("Song Title", "Artist Name", files[0].getAbsolutePath());
+                playlist.addTrack(track);
+            } else {
+                System.out.println("Die Datei '" + fileName + "' wurde im Ordner nicht gefunden.");
+            }
+        } else {
+            System.out.println("Der angegebene Ordner existiert nicht oder ist kein Verzeichnis.");
+        }
+    }
+    
+    /**
+     * Add new Playlist to List
+     * @param playlist
+     */
+    public void addPlaylist(Playlist playlist) {
+        playlists.add(playlist);
+    }
+
+//    public void createPlaylist(String name) {
+//        Playlist playlist = new Playlist(name);
+//        playlists.add(playlist);
+//    }
+
+    public void addTrackToPlaylist(Playlist playlist, Track track) {
+        if (playlists.contains(playlist)) {
+            playlist.addTrack(track);
+        }
+    }
+
+    public void removeTrackFromPlaylist(Playlist playlist, Track track) {
+        if (playlists.contains(playlist)) {
+            playlist.removeTrack(track);
+        }
+    }
+
+    /**
+     * load playlist 
+     * @param playlistName
+     * @return
+     */
+    public Playlist getPlaylist(String playlistName) {
+        for (Playlist playlist : playlists) {
+            if (playlist.getName().equals(playlistName)) {
+                return playlist;
+            }
+        }
+        return null; // Playlist nicht gefunden
+    }
+//    
+//    public List<Playlist> getAllTracks() {
+//    	 for (Playlist playlist : playlists) {
+//             System.out.println("Tracks: " + playlist.getTracks());
+//         }    			
+//    }
+}

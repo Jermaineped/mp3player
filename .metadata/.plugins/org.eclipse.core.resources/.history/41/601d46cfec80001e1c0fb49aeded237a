@@ -1,0 +1,5 @@
+package mp3Player;
+
+public class PlayerView {
+
+}

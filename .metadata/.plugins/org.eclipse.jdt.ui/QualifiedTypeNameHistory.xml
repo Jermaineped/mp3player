@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="ddf.minim.AudioBuffer"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="de.hsrm.mi.eibo.simpleplayer.SimpleMinim"/>
+    <fullyQualifiedTypeName name="ddf.minim.AudioInput"/>
+    <fullyQualifiedTypeName name="ddf.minim.Minim"/>
+    <fullyQualifiedTypeName name="ddf.minim.AudioPlayer"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.sun.media.jfxmedia.track.Track"/>
+    <fullyQualifiedTypeName name="Track"/>
+    <fullyQualifiedTypeName name="com.mpatric.mp3agic.Mp3File"/>
+    <fullyQualifiedTypeName name="Playlist"/>
+    <fullyQualifiedTypeName name="java.nio.file.Path"/>
+    <fullyQualifiedTypeName name="javafx.scene.shape.Path"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+</qualifiedTypeNameHistroy>

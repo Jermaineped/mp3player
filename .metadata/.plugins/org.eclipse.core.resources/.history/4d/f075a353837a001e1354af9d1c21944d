@@ -1,0 +1,163 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
+import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+
+public class Controller {
+
+	public static void main(String [] args) {
+		
+		start();
+	}
+	
+	public static void start() {
+		boolean isRunning = true;
+		Scanner scanner = new Scanner(System.in);
+
+		PlaylistManager playlistManager = new PlaylistManager(new ArrayList<>());
+		
+//		Playlist playlist = new Playlist("Meine_Playlist");
+//		playlist.addTrack(new Track("Song 1", "Künstler 1", "/Users/jpedraza/Downloads/01 Bring Mich Nach Hause.mp3"));
+//		playlist.addTrack(new Track("Song 1", "Künstler 1", "/Users/jpedraza/Downloads/02 Drei Worte (1).mp3"));
+//		
+//		playlistManager.addPlaylist(playlist);
+//		
+//		playlistManager.savePlaylist(playlist, playlist + ".m3u");
+//		
+//		System.out.println("Playlisten: " + playlistManager.getPlaylist("Meine_Playlist").getName());
+	
+        Playlist playlist = new Playlist("Importiert 1");
+		playlistManager.addPlaylist(playlist);
+
+        String m3uContent = "/Users/jpedraza/eclipse-workspace/mp3-player/music/test_playlist.m3u";
+        int counter = 0;
+        
+        try {
+        	BufferedReader reader = new BufferedReader(new FileReader(m3uContent));
+        	String [] split;
+            String line;
+            String number;
+            while ((line = reader.readLine()) != null) {
+            	if (line.startsWith("#EXTINF:")) {
+            		split = line.split(" ,");
+            		split = line.split("-");
+                    System.out.println(split[0]);
+                    System.out.println(split[1]);
+                    System.out.println(split[2]);// Hier kannst du mit jeder Zeile arbeiten
+                    Track track = new Track(line);
+                    playlist.addTrack(track);	
+                	} else {
+                		System.out.println(line);
+                	}
+            	} 
+           }catch (IOException e) {
+            e.printStackTrace();
+        }
+//        try {
+//			BufferedReader reader = new BufferedReader(new FileReader(m3uContent));
+//			playlist = new Playlist("Playlist Importiert");
+//			playlistManager.addPlaylist(playlist);
+//			String[] lines = m3uContent.split("\n");
+//			for (int i = 0; i < lines.length; i++) {
+//				System.out.println(lines[i]);
+//			}
+//	        for (String line : lines) {
+//	            if (!line.trim().isEmpty()) {
+//	               // Dies geht davon aus, dass die Zeilen in der M3U-Datei Dateipfade sind
+//	               Track track = new Track("Song Title", "Artist Name", line);
+//	                playlist.addTrack(track);
+//	                counter++;
+//	                System.out.println("Ja" + counter);
+//	                } else {
+//	                	counter++;
+//		                System.out.println("ne" + counter);
+//	                }
+//	            }
+//			
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//        try  
+//        {  
+//        
+//        File file_open=new File("/Users/jpedraza/eclipse-workspace/mp3-player/music/test_playlist.m3u");   
+//        BufferedReader br=new BufferedReader(new FileReader(file_open));  
+//        System.out.println("The content of the file are: ");  
+//        int ch=0;  
+//        String[] lines = file_open.split("\n");
+//        while((ch=br.read())!=-1)  
+//        {  
+//        System.out.print((char)ch);
+//        }
+//	}  
+//    catch(Exception e)  
+//    {  
+//        e.printStackTrace();  
+//    } 
+        
+//        String m3uContent = "/Users/jpedraza/eclipse-workspace/mp3-player/music/test_playlist.m3u";
+//        
+//        String[] lines = m3uContent.split("\n");
+//
+//        for (String line : lines) {
+//            if (!line.trim().isEmpty()) {
+//               // Dies geht davon aus, dass die Zeilen in der M3U-Datei Dateipfade sind
+//               Track track = new Track("Song Title", "Artist Name", line);
+//                playlist.addTrack(track);
+//                }
+//            }
+//
+        Mp3Player player = new Mp3Player();
+		
+		System.out.println("Playlisten: " + playlistManager.getPlaylist("Importiert 1").getName());
+		System.out.println("Songs: " + playlistManager.getPlaylist("Importiert 1").getTracks());
+		
+		
+		String input;
+		
+//		 System.out.println("Bitte gebe den Dateinamen von deinem Song ein: ");
+		
+		
+//		minim = new SimpleMinim(true); // Damit es Nebeläufig ist auf "true" stellen !!!
+//		audioPlayer = minim.loadMP3File(song);
+		 
+//		 audioPlayer.play();
+		 
+		 while (isRunning) {
+			 System.out.println("Geben Sie Ihren Befehl ein:");
+			 input = scanner.nextLine();
+			 
+			 String [] split = input.split(" ");
+			 
+			 switch(split[0]) {
+			 case "play": 
+				 player.play();
+				 break;
+			 case "pause": 
+				 player.pause();
+				 break;
+			 case "next": 
+				 player.next();
+				 break;
+			 case "back": 
+				 player.back();
+				 break;
+			 case "volume": 
+				 float volume = Float.parseFloat(split[1]);
+				 System.out.println(volume);
+				 player.setVolume(volume); // zwischen 0 und -30
+				 break;
+			 case "quit": 
+				 player.stop();
+				 break;
+				 
+			 }
+		 }	
+	}
+}

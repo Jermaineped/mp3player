@@ -1,0 +1,20 @@
+INDEX VERSION 1.134+/Users/jpedraza/eclipse-workspace/mp3-player/.metadata/.plugins/org.eclipse.jdt.core
+3978383067.index
+1865797976.index
+3948717687.index
+2751653418.index
+3665562313.index
+2273063109.index
+3284715591.index
+2886622251.index
+3150234988.index
+2970027131.index
+1791410986.index
+3939774360.index
+3089592075.index
+1506660141.index
+4006513238.index
+3203812601.index
+3731448612.index
+1622812462.index
+839000827.index

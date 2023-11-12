@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
+import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+
+public class Controller {
+
+	public static void main(String [] args) {
+		
+		start();
+	}
+	
+	public static void start() {
+		boolean isRunning = true;
+		Scanner scanner = new Scanner(System.in);
+
+		PlaylistManager playlistManager = new PlaylistManager(new ArrayList<>());
+		
+		String file = "/Users/jpedraza/eclipse-workspace/mp3-player/music/test_playlist.m3u";
+		
+		Playlist playlist = new Playlist("Playlist 1");
+//		playlist.addTrack(new Track("Song 1", "Künstler 1", "/Users/jpedraza/Downloads/01 Bring Mich Nach Hause.mp3"));
+//		playlist.addTrack(new Track("Song 1", "Künstler 1", "/Users/jpedraza/Downloads/02 Drei Worte (1).mp3"));
+//		
+//		playlistManager.addPlaylist(playlist);
+//		
+//		playlistManager.savePlaylist(playlist, playlist + ".m3u");
+		
+		
+		
+		playlistManager.addPlaylist(playlist);
+		
+		System.out.println("Playlisten: " + playlistManager.getPlaylist("Meine_Playlist").getName());
+		
+		Mp3Player player = new Mp3Player();
+
+		
+		
+		
+		String input;
+		
+//		 System.out.println("Bitte gebe den Dateinamen von deinem Song ein: ");
+		 String song = "/Users/jpedraza/Downloads/01 Bring Mich Nach Hause.mp3";
+		
+//		minim = new SimpleMinim(true); // Damit es Nebeläufig ist auf "true" stellen !!!
+//		audioPlayer = minim.loadMP3File(song);
+		 
+//		 audioPlayer.play();
+		 
+		 while (isRunning) {
+			 System.out.println("Geben Sie Ihren Befehl ein:");
+			 input = scanner.nextLine();
+			 
+			 String [] split = input.split(" ");
+			 
+			 switch(split[0]) {
+			 case "play": 
+				 player.play();
+				 break;
+			 case "pause": 
+				 player.pause();
+				 break;
+			 case "next": 
+				 player.next();
+				 break;
+			 case "back": 
+				 player.back();
+				 break;
+			 case "volume": 
+				 float volume = Float.parseFloat(split[1]);
+				 System.out.println(volume);
+				 player.setVolume(volume); // zwischen 0 und -30
+				 break;
+			 case "quit": 
+				 player.stop();
+				 break;
+				 
+			 }
+		 }	
+	}
+}

@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
+import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+
+public class Mp3Player {
+	
+	SimpleMinim minim;
+	SimpleAudioPlayer audioPlayer;
+	
+	public Mp3Player() {
+		minim = new SimpleMinim(true);
+		audioPlayer = minim.loadMP3File("/Users/jpedraza/Downloads/01 Bring Mich Nach Hause.mp3");
+		
+	}
+	
+	public int getLength() {
+		return audioPlayer.length();
+	}
+	
+	public void play() {
+		audioPlayer.play();
+	}
+	
+	public void pause() {
+		audioPlayer.pause();
+	}
+	
+	public void next() {
+		audioPlayer.skip(getLength());
+	}
+	
+	public void back() {
+		audioPlayer.skip(-getLength());
+	}
+	
+	public void stop() {
+		minim.stop();
+		
+	}
+	
+	public void setVolume(float vol) {
+		audioPlayer.setGain(vol);
+		System.out.println("Lautstärke: " + vol);
+	}
+}
+

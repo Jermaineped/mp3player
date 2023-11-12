@@ -1,0 +1,36 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Playlist {
+    private String name;
+    private String file;
+    private List<Track> tracks;
+
+    public Playlist(String name) {
+        this.name = name;
+        this.tracks = new ArrayList<>();
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void addTrack(Track track) {
+        tracks.add(track);
+    }
+
+    public void removeTrack(Track track) {
+        tracks.remove(track);
+    }
+
+    public Track getTracks() {
+    	 for (Track track : tracks) {
+             return track;
+         }
+         return null;
+    }
+}

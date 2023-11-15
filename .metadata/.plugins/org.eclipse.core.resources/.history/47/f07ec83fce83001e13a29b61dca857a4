@@ -1,0 +1,54 @@
+package presentation;
+
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
+
+public class PlayerView extends Application {
+	
+	public void init() {
+	}
+	
+	@Override
+	public void start(Stage primaryStage) {
+		
+		Label l1 = new Label("Label");
+		
+		TextField t1 = new TextField();
+		HBox.setHgrow(t1, Priority.ALWAYS);
+		
+		Button play = new Button("Play");
+		Button pause = new Button("Pause");
+		
+		HBox root = new HBox(5);
+		root.getChildren().addAll(l1, t1, play, pause);
+		
+		root.setPadding(new insets(10));
+		root.setAlignment(Pos.BASELINE_LEFT);
+		root.setStyle("-fx-background-color: lightgrey;");
+
+		Scene scene = new Scene(root, 500, 500);
+		
+		primaryStage.setTitle("Hello World");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	public void stop() {
+		
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
+
+// --module-path /Users/jpedraza/Downloads/javafx-sdk-21.0.1 --add-modules javafx.controls

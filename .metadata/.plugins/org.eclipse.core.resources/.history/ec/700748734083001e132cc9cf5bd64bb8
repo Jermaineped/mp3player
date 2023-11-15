@@ -1,0 +1,15 @@
+package view;
+
+public class PlayerView extends Application {
+	public void init() {
+		
+	}
+	
+	public void start(Stage primaryStage) {
+		
+	}
+	
+	public void stop() {
+		
+	}
+}

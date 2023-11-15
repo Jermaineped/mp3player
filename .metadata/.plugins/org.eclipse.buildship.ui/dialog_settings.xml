@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.buildship.ui.wizard.project.creation">
+		<item key="project_location" value="/Users/jpedraza/eclipse-workspace/mp3-player/hellofx"/>
+		<item key="use_default_location" value="true"/>
+		<item key="java_home" value="/Users/jpedraza/Downloads/javafx-sdk-21.0.1"/>
+	</section>
+</section>

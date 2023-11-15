@@ -12,6 +12,10 @@ import com.mpatric.mp3agic.UnsupportedTagException;
 
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import presentation.PlayerView;
+
 
 public class Controller {
 
@@ -33,8 +37,8 @@ public class Controller {
 		PlaylistManager playlistManager = new PlaylistManager();
         ArrayList<Playlist> playlist = new ArrayList<>();
         Mp3Player player = new Mp3Player();
-        playlistManager.loadPlaylist("/Users/jpedraza/eclipse-workspace/mp3-player/music/playlist.m3u", "Playlist 1");
         
+        playlistManager.loadPlaylist("/Users/jpedraza/eclipse-workspace/mp3-player/music/playlist.m3u", "Playlist 1"); 
 		playlist.add(playlistManager.loadPlaylist("/Users/jpedraza/eclipse-workspace/mp3-player/music/playlist.m3u", "Playlist 1"));
 //		playlist.add(playlistManager.loadPlaylist("/Users/jpedraza/eclipse-workspace/mp3-player/music/playlist-2.m3u", "Playlist 2"));
 		playlist.add(playlistManager.getAllTracks());
@@ -46,6 +50,8 @@ public class Controller {
 			System.out.println(playlist.get(i).getName());
 		}
 		System.out.println("");
+		
+		
 		
 		String input;
 		 

@@ -1,0 +1,10 @@
+package presentation.scenes.playerview;
+
+public class PlayerThread extends Thread {
+
+	Mp3Player player; 
+	
+	public void run () {
+		
+	}
+}

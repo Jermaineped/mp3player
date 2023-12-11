@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>assets</name>
+			<type>2</type>
+			<location>/Users/jpedraza/eclipse-workspace/mp3-player/assets</location>
+		</link>
+	</linkedResources>
 </projectDescription>

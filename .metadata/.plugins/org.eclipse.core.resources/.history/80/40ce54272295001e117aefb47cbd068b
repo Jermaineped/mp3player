@@ -1,0 +1,16 @@
+.bg-playerview {
+	-fx-background-color: rgb(203, 203, 203);
+}
+
+.bg-btn {
+	background-color: #fff;
+	-fx-background-color: #fff;
+	border-radius: 50px;
+	
+	-fx-background-radius: 5em;
+    -fx-min-width: 3px;
+    -fx-min-height: 3px;
+    -fx-max-width: 3px;
+    -fx-max-height: 3px;
+	
+}

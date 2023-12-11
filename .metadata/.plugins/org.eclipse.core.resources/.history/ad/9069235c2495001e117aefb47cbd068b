@@ -1,0 +1,34 @@
+package presentation.components.trackInformation;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
+public class TrackInfoUITop extends BorderPane{
+	Label albumLabel;
+	Label artistLabel;
+	Label titleLabel; 
+	ImageView cover;
+	
+	public TrackInfoUITop() {
+		
+	}
+	
+	public Node initTrackInformation() {
+		
+		VBox trackInfos = new VBox();
+		titleLabel = new Label("Title");
+		artistLabel = new Label("Artist");
+		titleLabel.getStyleClass().add("title");
+		trackInfos.getChildren().addAll(titleLabel, artistLabel);
+		trackInfos.setAlignment(Pos.CENTER);
+		trackInfos.setPadding(new Insets(10, 5, 10, 5));
+		trackInfos.setSpacing(15);
+		
+		return trackInfos;
+	}
+}

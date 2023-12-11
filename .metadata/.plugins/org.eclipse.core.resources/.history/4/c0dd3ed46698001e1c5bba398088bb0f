@@ -1,0 +1,174 @@
+package presentation.components.controllbuttons;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
+public class ControllButtons extends BorderPane {
+	
+	 Label albumLabel;
+	 Label artistLabel;
+	 Label titleLabel; 
+	 ImageView cover;
+	 Button play;
+	 Button pause;
+	 Button skipNext; 
+	 Button skipBack;
+	 Button shuffle;
+	 Button repeat;
+	 ImageView viewPlay;
+	 ImageView viewPause;
+	 ImageView viewSkipNext;
+	 ImageView viewSkipBack;
+	 ImageView viewShuffle;
+	 ImageView viewRepeat;
+
+	public ControllButtons () {
+	}
+	
+	public Node initControllBtns() {
+		
+		HBox controller = new HBox();
+		HBox controllerMid = new HBox();
+		HBox controllerLeft = new HBox();
+		HBox controllerRight = new HBox();
+		
+		skipBack = new Button();
+		play = new Button();
+		pause = new Button();
+		skipNext = new Button();
+		shuffle = new Button(); 
+		repeat = new Button(); 
+		
+		play.getStyleClass().add("bg-btn");
+		pause.getStyleClass().add("bg-btn");
+		skipNext.getStyleClass().add("bg-btn");
+		skipBack.getStyleClass().add("bg-btn");
+		shuffle.getStyleClass().add("bg-btn");
+		repeat.getStyleClass().add("bg-btn");
+
+		controller.setSpacing(80);
+		controller.setAlignment(Pos.CENTER);
+		controllerMid.setSpacing(30);
+		
+		// Play Button
+		viewPlay = new ImageView();
+		try {
+			viewPlay.setImage(new Image(new FileInputStream("../assets/img/play.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewPlay.setFitHeight(30);
+		viewPlay.setPreserveRatio(true);
+		play.setGraphic(viewPlay);
+		
+		// Pause
+		viewPause = new ImageView();
+		try {
+			viewPause.setImage(new Image(new FileInputStream("../assets/img/pause.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewPause.setFitHeight(30);
+		viewPause.setPreserveRatio(true);
+		pause.setGraphic(viewPause);
+		
+		// Next
+		viewSkipNext = new ImageView();
+		try {
+			viewSkipNext.setImage(new Image(new FileInputStream("../assets/img/next.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewSkipNext.setFitHeight(30);
+		viewSkipNext.setPreserveRatio(true);
+		skipNext.setGraphic(viewSkipNext);
+		
+		// Back
+		viewSkipBack = new ImageView();
+		try {
+			viewSkipBack.setImage(new Image(new FileInputStream("../assets/img/back.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewSkipBack.setFitHeight(30);
+		viewSkipBack.setPreserveRatio(true);
+		skipBack.setGraphic(viewSkipBack);
+		
+		// Shuffle
+		viewShuffle = new ImageView();
+		try {
+			viewShuffle.setImage(new Image(new FileInputStream("../assets/img/shuffle.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewShuffle.setFitHeight(30);
+		viewShuffle.setPreserveRatio(true);
+		shuffle.setGraphic(viewShuffle);
+		
+		// Repeat
+		viewRepeat = new ImageView();
+		try {
+			viewRepeat.setImage(new Image(new FileInputStream("../assets/img/repeat.png")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewRepeat.setFitHeight(30);
+		viewRepeat.setPreserveRatio(true);
+		repeat.setGraphic(viewRepeat);
+		
+		
+		controllerMid.getChildren().addAll(skipBack, play, pause, skipNext);
+		controllerRight.getChildren().add(repeat);
+		controllerLeft.getChildren().add(shuffle);
+		controller.getChildren().addAll(controllerLeft, controllerMid, controllerRight);
+		
+		return controller;
+	}
+	
+	public Button getPlayBtn() {
+		return play;
+	}
+	
+	public Button getPauseBtn() {
+		return pause;
+	}
+	
+	public Button getNextBtn() {
+		return skipNext;
+	}
+	
+	public Button getBackBtn() {
+		return skipBack;
+	}
+	
+	public Button getShuffleBtn() {
+		return shuffle;
+	}
+	
+	public Button getRepeatBtn() {
+		return repeat;
+	}
+	
+	public void setImg(Image img) {
+        this.viewPlay.setImage(ew Image(new FileInputStream("../assets/img/back.png")));
+	}
+}

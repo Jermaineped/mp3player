@@ -1,0 +1,40 @@
+package presentation.components.trackInformation;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+
+public class ImageView extends BorderPane {
+	
+	ImageView cover;
+
+	public ImageView() {
+		
+	}
+	
+//	public Node initImage() {
+//		
+//		cover = new ImageView();
+//	
+//		HBox imageBox = new HBox();
+//		cover.setImage(new Image(new FileInputStream("../assets/img/nip.jpg")));
+//		cover.setX(50); 
+//		cover.setY(50); 
+//	      
+//	    //setting the fit height and width of the image view 
+//		cover.setFitHeight(500); 
+//		cover.setFitWidth(500); 
+//	      
+//	    //Setting the preserve ratio of the image view 
+//		cover.setPreserveRatio(true);
+//		imageBox.setAlignment(Pos.CENTER);
+//		imageBox.getChildren().add(cover);
+//		this.setCenter(imageBox);
+//	}
+}

@@ -1,0 +1,16 @@
+package presentation.scenes.playerview;
+
+import business.Mp3Player;
+
+public class PlayerThread extends Thread {
+
+	Mp3Player player; 
+	
+	public PlayerThread (Mp3Player player) {
+		this.player = player;
+	}
+	
+	public void run () {
+		player.play();
+	}
+}

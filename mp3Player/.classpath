@@ -7,6 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX21"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="assets"/>
 	<classpathentry kind="lib" path="/Users/jpedraza/eclipse-workspace/mp3-player/mp3Player/src/eibo_simpleminim_new.jar"/>
 	<classpathentry kind="lib" path="/Users/jpedraza/Downloads/minim_library/minim.jar"/>
 	<classpathentry kind="lib" path="/Users/jpedraza/Downloads/minim_library/jl1.0.1.jar"/>

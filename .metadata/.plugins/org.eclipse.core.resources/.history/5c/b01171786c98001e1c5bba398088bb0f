@@ -1,0 +1,5 @@
+package presentation.scenes.playerview;
+
+public class PlayerThread {
+
+}

@@ -58,7 +58,6 @@ public class PlayerViewController {
 	Timer timer;
 	TimerTask task;
 	boolean isClicked = false;
-	boolean playing;
 	
 	public PlayerViewController() {
 		
@@ -100,9 +99,7 @@ public class PlayerViewController {
 						player.play();
 						return null;
 					}
-				};
-				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
+				}
 //				
 				
 				

@@ -102,7 +102,9 @@ public class PlayerViewController {
 					}
 				};
 				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
+				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+					
+				});
 //				
 				
 				

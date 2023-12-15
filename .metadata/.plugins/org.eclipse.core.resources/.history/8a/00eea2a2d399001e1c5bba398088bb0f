@@ -10,7 +10,6 @@ import business.Mp3Player;
 import business.data.Playlist;
 import business.data.PlaylistManager;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -58,7 +57,6 @@ public class PlayerViewController {
 	Timer timer;
 	TimerTask task;
 	boolean isClicked = false;
-	boolean playing;
 	
 	public PlayerViewController() {
 		
@@ -93,16 +91,6 @@ public class PlayerViewController {
 //						mainView.controllButtons.setImg(playIcon);
 //					}
 //				}.start();
-				
-				Task<Void> task = new Task<Void>() {
-					public Void call() {
-						playing = true; 
-						player.play();
-						return null;
-					}
-				};
-				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
 //				
 				
 				

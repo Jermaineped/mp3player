@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="ddf.minim.AudioInput"/>
-    <fullyQualifiedTypeName name="ddf.minim.Minim"/>
-    <fullyQualifiedTypeName name="java.io.FileWriter"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.sun.media.jfxmedia.track.Track"/>
@@ -49,7 +46,6 @@
     <fullyQualifiedTypeName name="presentation.components.trackInformation.TrackInfoUITop"/>
     <fullyQualifiedTypeName name="javafx.scene.layout.BorderPane"/>
     <fullyQualifiedTypeName name="javafx.scene.Node"/>
-    <fullyQualifiedTypeName name="business.Mp3Player"/>
     <fullyQualifiedTypeName name="presentation.components.trackInformation.TrackInformationUI"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Slider"/>
     <fullyQualifiedTypeName name="java.util.Timer"/>
@@ -60,4 +56,8 @@
     <fullyQualifiedTypeName name="business.data.Playlist"/>
     <fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
     <fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
+    <fullyQualifiedTypeName name="business.Mp3Player"/>
+    <fullyQualifiedTypeName name="javafx.application.Platform"/>
+    <fullyQualifiedTypeName name="application.Main"/>
+    <fullyQualifiedTypeName name="javafx.concurrent.Task"/>
 </qualifiedTypeNameHistroy>

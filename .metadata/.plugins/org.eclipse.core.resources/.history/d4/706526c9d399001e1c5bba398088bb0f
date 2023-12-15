@@ -100,9 +100,7 @@ public class PlayerViewController {
 						player.play();
 						return null;
 					}
-				};
-				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
+				}
 //				
 				
 				

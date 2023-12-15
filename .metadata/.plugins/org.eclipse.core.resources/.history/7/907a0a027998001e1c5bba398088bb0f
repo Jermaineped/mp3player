@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import application.Main;
 import business.Mp3Player;
 import business.data.Playlist;
 import business.data.PlaylistManager;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -58,7 +58,6 @@ public class PlayerViewController {
 	Timer timer;
 	TimerTask task;
 	boolean isClicked = false;
-	boolean playing;
 	
 	public PlayerViewController() {
 		
@@ -86,24 +85,17 @@ public class PlayerViewController {
 			public void handle(ActionEvent e) {
 				mainView.controllButtons.setImg(pauseIcon);
 				
-//				new Thread() {
-//					
-//					public void run () {
-//						player.play();
-//						mainView.controllButtons.setImg(playIcon);
-//					}
-//				}.start();
-				
-				Task<Void> task = new Task<Void>() {
-					public Void call() {
-						playing = true; 
+				new Thread() {
+					
+					public void run () {
 						player.play();
-						return null;
+						Platform.runLater(
+							() -> {
+								mainView.controllButtons.setImg(playIcon);
+							});
 					}
-				};
+				}.start();
 				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
-//				
 				
 				
 				System.out.println(pauseIcon);
@@ -167,6 +159,7 @@ public class PlayerViewController {
 		shuffle.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			
 			public void handle(ActionEvent e) {
+				mainView.controllButtons.setImg(playIcon);
 				player.shuffle();
 			}
 			

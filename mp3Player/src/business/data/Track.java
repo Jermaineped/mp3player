@@ -12,12 +12,12 @@ public class Track {
 	private int id;
     private String artist;
     private String title;
-    private double length;
+    private long length;
     private String filePath;
     private byte[] imgPath;
 
     
-    public Track(int id, String title, String artist,  double length, String filePath, byte[] imgPath) {
+    public Track(int id, String title, String artist,  long length, String filePath, byte[] imgPath) {
     	this.id = id;
     	this.title = artist;
         this.artist = title;
@@ -36,6 +36,10 @@ public class Track {
 
     public String getFilePath() {
         return filePath;
+    }
+    
+    public long getLength() {
+        return length;
     }
     
     

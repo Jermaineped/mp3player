@@ -10,7 +10,10 @@ import business.Mp3Player;
 import business.data.Playlist;
 import business.data.PlaylistManager;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,19 +49,19 @@ public class PlayerViewController {
 	private ControllButtons controllButtons;
 	private Button play;
 	private Button playPause;
-	private Button pause;
 	private Button next;
 	private Button back;
 	private Button shuffle;
 	private Button repeat;
-	private ProgressBar slider;
+	private Slider slider;
 	private Mp3Player player;
 	private String pauseIcon = "../assets/img/pause.png";
 	private String playIcon = "../assets/img/play.png";
+	private double length; 
 	Timer timer;
 	TimerTask task;
-	boolean isClicked = false;
-	boolean playing;
+	boolean isClicked = true;
+	boolean playing = true;
 	
 	public PlayerViewController() {
 		
@@ -74,82 +77,62 @@ public class PlayerViewController {
 //		mainView.setImg(player.getPlaylist().getTracks().get(0).getImgPath());
 		controllButtons = mainView.controllButtons;
 		play = mainView.controllButtons.getPlayBtn();
-		pause = mainView.controllButtons.getPauseBtn();
 		next = mainView.controllButtons.getNextBtn();
 		back = mainView.controllButtons.getBackBtn();
 		shuffle = mainView.controllButtons.getShuffleBtn();
 		repeat = mainView.controllButtons.getRepeatBtn();
 		slider = mainView.trackInformation.getDuration();
 		
+	
 		play.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			
 			public void handle(ActionEvent e) {
-				mainView.controllButtons.setImg(pauseIcon);
 				
-//				new Thread() {
-//					
-//					public void run () {
-//						player.play();
-//						mainView.controllButtons.setImg(playIcon);
-//					}
-//				}.start();
-				
-				Task<Void> task = new Task<Void>() {
-					public Void call() {
-						playing = true; 
+					if (playing) {
 						player.play();
-						return null;
+						mainView.controllButtons.setImg(pauseIcon);
+						System.out.println("Läuft " + playing);
+						playing = false;
+					} else if (!playing) {
+						mainView.controllButtons.setImg(playIcon);
+						System.out.println("Läuft nicht " + playing);
+						playing = true;
 					}
-				};
-				
-				task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {);
-//				
-				
-				
-				System.out.println(pauseIcon);
-//				player.play();
-				
-//				timer = new Timer();
-//				task = new TimerTask() {
-//
-//					@Override
-//					public void run() {
-//						double current = player.currentTime();
-//						double end = player.length();
-//						for (double i = 0; i <= end; i++) {
-//							current = i / end;
-//							slider.setProgress(current);
-//							System.out.println("Slider: " + current);
-//							 try {
-//						        	Thread.sleep(1000);
-//						        	} catch (InterruptedException e) {
-//						        		e.printStackTrace();
-//						        	}
-//						}
-////						double x = current/end;
-////						slider.setProgress(x);
-////						System.out.println("Slider: " + x);
-//						// TODO Auto-generated method stub
-//					}
-//				}; 
-//				
-//				timer.scheduleAtFixedRate(task, 1000, 1000);
 			}
 		});
 		
-		pause.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-			
-			public void handle(ActionEvent e) {
-				mainView.controllButtons.setImg(playIcon);
-				player.pause();
-				System.out.println("geht");
+		player.currentTimeProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				System.out.println("Listener: " + newValue.intValue());
+				String time = String.format("%02d:%02d", newValue.intValue() / 60, newValue.intValue() % 60);
+				Platform.runLater(() -> mainView.trackInformation.getTime().setText(time.toString()));
+				System.out.println("Slider " + player.currentSlideProperty().doubleValue());
+				Platform.runLater(() -> mainView.trackInformation.getDuration().valueProperty().set(player.currentSlideProperty().doubleValue()));
+//				System.out.println("Zeit: " + player.getPlaylist().getTracks().get(player.getTrackId()).getLength());
+				if (newValue.intValue() == player.getPlaylist().getTracks().get(player.getTrackId()).getLength()) {
+					Platform.runLater(() -> nextTrack(mainView));
+				}
 			}
+		});
+		
+		
+		slider.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				System.out.println(newValue.doubleValue());
+			}
+			
 		});
 		
 		next.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 			
 			public void handle(ActionEvent e) {
 				player.next();
+				mainView.controllButtons.setImg(pauseIcon);
+				playing = false;
 				System.out.println("Track ID: " + player.getTrackId());
 				mainView.setImg(player.getPlaylist().getTracks().get(player.getTrackId()).byteToImage(player.getPlaylist().getTracks().get(player.getTrackId()).getImgPath()));
 				mainView.trackInformation.setTitle(player.getPlaylist().getTracks().get(player.getTrackId()).getTitle());
@@ -161,6 +144,11 @@ public class PlayerViewController {
 			
 			public void handle(ActionEvent e) {
 				player.back();
+				mainView.controllButtons.setImg(pauseIcon);
+				playing = false;
+				mainView.setImg(player.getPlaylist().getTracks().get(player.getTrackId()).byteToImage(player.getPlaylist().getTracks().get(player.getTrackId()).getImgPath()));
+				mainView.trackInformation.setTitle(player.getPlaylist().getTracks().get(player.getTrackId()).getTitle());
+				mainView.trackInformation.setArtist(player.getPlaylist().getTracks().get(player.getTrackId()).getArtist());
 			}
 		});
 		
@@ -168,6 +156,11 @@ public class PlayerViewController {
 			
 			public void handle(ActionEvent e) {
 				player.shuffle();
+				playing = false;
+				mainView.controllButtons.setImg(pauseIcon);
+				mainView.setImg(player.getPlaylist().getTracks().get(player.getTrackId()).byteToImage(player.getPlaylist().getTracks().get(player.getTrackId()).getImgPath()));
+				mainView.trackInformation.setTitle(player.getPlaylist().getTracks().get(player.getTrackId()).getTitle());
+				mainView.trackInformation.setArtist(player.getPlaylist().getTracks().get(player.getTrackId()).getArtist());
 			}
 			
 			// Back button zu andere View auch hier erzeugen
@@ -197,5 +190,15 @@ public class PlayerViewController {
 	public Image byteToImage(byte[] imageData) {
 		ByteArrayInputStream byteArray = new ByteArrayInputStream(imageData);
 		return new Image(byteArray);
+	}
+	
+	public void nextTrack(PlayerView mainView) {
+				player.next();
+				mainView.controllButtons.setImg(pauseIcon);
+				playing = false;
+				System.out.println("Track ID: " + player.getTrackId());
+				mainView.setImg(player.getPlaylist().getTracks().get(player.getTrackId()).byteToImage(player.getPlaylist().getTracks().get(player.getTrackId()).getImgPath()));
+				mainView.trackInformation.setTitle(player.getPlaylist().getTracks().get(player.getTrackId()).getTitle());
+				mainView.trackInformation.setArtist(player.getPlaylist().getTracks().get(player.getTrackId()).getArtist());
 	}
 }

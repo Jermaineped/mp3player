@@ -39,16 +39,16 @@ public class PlaylistManager {
                     for (File file : files) {
                         if (file.isFile() && file.getName().toLowerCase().endsWith(".mp3")) {
                             Mp3File mp3file = new Mp3File(file);
-                            long sec = mp3file.getLengthInSeconds() % 60;
-                            long min = mp3file.getLengthInSeconds() / 60;
-                            double seconds = sec / 100.0;
-                            double minutes = min;
-                            double length = min + sec / 100.0;
+//                            long sec = mp3file.getLengthInSeconds() % 60;
+//                            long min = mp3file.getLengthInSeconds() / 60;
+//                            double seconds = sec / 100.0;
+//                            double minutes = min;
+                            long length = mp3file.getLengthInSeconds();
                             Track track = new Track(id, mp3file.getId3v2Tag().getArtist(), mp3file.getId3v2Tag().getTitle(), length, file.getAbsolutePath(), mp3file.getId3v2Tag().getAlbumImage());
                             playlist.addTrack(track);                     
                             id++;
-                            System.out.println(track.getArtist());
-                            System.out.println(track.getImgPath().length);
+//                            System.out.println("Sekunden: " + mp3file.getLengthInSeconds());
+//                            System.out.println();
                         }
                     }
                 }
@@ -83,11 +83,11 @@ public class PlaylistManager {
                          	 for (int i = 0; i < files.length; i++) {
                          		if(files[i].equals(fileLine)) {
                                       Mp3File mp3file = new Mp3File(files[i]);
-                                      long sec = mp3file.getLengthInSeconds() % 60;
-                                      long min = mp3file.getLengthInSeconds() / 60;
-                                      double seconds = sec / 100.0;
-                                      double minutes = min;
-                                      double length = min + sec / 100.0;
+//                                      long sec = mp3file.getLengthInSeconds() % 60;
+//                                      long min = mp3file.getLengthInSeconds() / 60;
+//                                      double seconds = sec / 100.0;
+//                                      double minutes = min;
+                                      long length = mp3file.getLengthInSeconds();
                                       Track track = new Track(id, mp3file.getId3v2Tag().getArtist(), mp3file.getId3v2Tag().getTitle(), length, files[i].getAbsolutePath(), mp3file.getId3v2Tag().getAlbumImage());
                                       playlist.addTrack(track);
                                       id++;

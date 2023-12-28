@@ -75,18 +75,6 @@ public class ControllButtons extends BorderPane {
 		viewPlay.setPreserveRatio(true);
 		play.setGraphic(viewPlay);
 		
-		// Pause
-		viewPause = new ImageView();
-		try {
-			viewPause.setImage(new Image(new FileInputStream("../assets/img/pause.png")));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		viewPause.setFitHeight(30);
-		viewPause.setPreserveRatio(true);
-		pause.setGraphic(viewPause);
-		
 		// Next
 		viewSkipNext = new ImageView();
 		try {
@@ -136,7 +124,7 @@ public class ControllButtons extends BorderPane {
 		repeat.setGraphic(viewRepeat);
 		
 		
-		controllerMid.getChildren().addAll(skipBack, play, pause, skipNext);
+		controllerMid.getChildren().addAll(skipBack, play, skipNext);
 		controllerRight.getChildren().add(repeat);
 		controllerLeft.getChildren().add(shuffle);
 		controller.getChildren().addAll(controllerLeft, controllerMid, controllerRight);
@@ -146,10 +134,6 @@ public class ControllButtons extends BorderPane {
 	
 	public Button getPlayBtn() {
 		return play;
-	}
-	
-	public Button getPauseBtn() {
-		return pause;
 	}
 	
 	public Button getNextBtn() {

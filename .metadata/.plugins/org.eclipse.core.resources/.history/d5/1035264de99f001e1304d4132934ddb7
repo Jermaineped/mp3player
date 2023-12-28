@@ -1,0 +1,9 @@
+package business;
+
+public class ThreadMp3 {
+
+	Thread threadPlay;
+	
+	public ThreadMp3 () {
+	}
+}

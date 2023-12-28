@@ -1,0 +1,10 @@
+package business;
+
+public class Worker extends ThreadMp3 {
+
+	public Worker(String name) {
+		super(String name);
+		// TODO Auto-generated constructor stub
+	}
+
+}

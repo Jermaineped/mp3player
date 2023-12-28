@@ -1,0 +1,10 @@
+package business;
+
+public class ThreadMp3 extends Thread {
+
+	Thread threadPlay;
+	
+	public ThreadMp3 (Thread threadPlay) {
+		this.threadPlay = threadPlay;
+	}
+}
